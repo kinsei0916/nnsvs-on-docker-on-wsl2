@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nnsvs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nnsvs-sample
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    image: nnsvs
+    network_mode: bridge
+    ports:
+      - '8888:8888'
+    runtime: nvidia
+    shm_size: '2gb'
+    volumes:
+      - .:/workspace
