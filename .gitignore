@@ -8,6 +8,14 @@ nnsvs
 
 kiritan_singing
 
+outputs
+
+sample/song.list
+sample/score/*
+!haru.musicxml
+sample/label
+sample/wav
+
 .idea
 .vscode
 
