@@ -1,5 +1,7 @@
 FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 RUN apt-get update && \
   apt-get install -yq --no-install-recommends \
   git \
