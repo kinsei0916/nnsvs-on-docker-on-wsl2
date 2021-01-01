@@ -1,13 +1,26 @@
 FROM nvidia/cuda:11.0-cudnn8-devel-ubuntu18.04
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  cmake \
+RUN apt-get update && \
+  apt-get install -yq --no-install-recommends \
   git \
   libsndfile1 \
   python3 \
   python3-dev \
-  python3-pip && \
+  python3-pip \
+  wget && \
   rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp
+
+RUN wget --quiet https://github.com/Kitware/CMake/releases/download/v3.19.2/cmake-3.19.2.tar.gz && \
+  tar zxf cmake-3.19.2.tar.gz && \
+  cd cmake-3.19.2 && \
+  ./bootstrap && \
+  make && \
+  make install && \
+  cd .. && \
+  rm cmake-3.19.2.tar.gz && \
+  rm -rf cmake-3.19.2
 
 RUN pip3 install --upgrade pip
 RUN pip3 install setuptools
